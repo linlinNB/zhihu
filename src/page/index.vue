@@ -1,6 +1,6 @@
 <template>
   <div class="index">
-    <div class="index-wrap">
+    <div class="index-wrap" :class="{on:menu_off}">
       <div class="header">
           <h1>今日热闻</h1>
       <span class="menu-i" @click="menu_fade()">
@@ -114,7 +114,7 @@ export default {
     //     // this.newfun();
     // },
   methods:{
-        menu_fade(){
+    menu_fade(){
           this.menu_off = !this.menu_off
 
       console.log(this.menu_off)
@@ -132,7 +132,7 @@ export default {
 .menu-i{width: 30px;height: 30px;display: inline-block;background: url(../assets/img/menu.png) center no-repeat ;position: absolute;;left: 10px;top: 10px;z-index: 1;background-size: 30px;}
 .header{height: 50px;width: 100%;position: fixed;left: 0;top: 0;line-height: 50px;z-index: 1;text-align: center;}
 
-.menu{width: 188px;background: #232a30;position: fixed;top: 0;z-index: 10;height: 100%;transform: translateX(-188px);}
+.menu{width: 188px;background: #232a30;position: fixed;top: 0;z-index: 10;height: 100%;transform: translateX(-188px);transition: all 0.5s}
 .menu .user{padding: 10px;box-sizing: border-box;width: 100%;position: absolute;left: 0;top: 0;}
 .menu .tit{width: 100%;display: flex;justify-content: space-between;line-height: 35px;color: #94999d;font-size: 14px;margin-bottom: 10px;}
 .menu .pic-user{width: 35px;height: 35px;border-radius: 50%;background: #fff;overflow: hidden;font-size: 0;margin-right: 10px;}
@@ -149,8 +149,9 @@ export default {
 .newList h2{font-size: 14px;padding-left: 45px;}
 .newList .i-h-r{display: inline-block;width: 16px;height: 16px;background: url(../assets/img/i-r.png)center no-repeat;background-size: 15px;}
 .newList .i-r{display: inline-block;width: 16px;height: 16px;background: url(../assets/img/i-add.png)center no-repeat;background-size: 15px;}
-.newList .liwrap{width: 100%;height: 510px;overflow-x: hidden;z-index: 9} 
- 
+.newList .liwrap{width: 100%;height: 510px;overflow-x: hidden;z-index: 9}
+.index-wrap{transition: all .5s;}
+.index-wrap.on{transform: translateX(188px);}
 .newList .liwrap::-webkit-scrollbar {/*隐藏滚轮*/display: none;}
 
 .bot-menu{width: 188px;display: flex;justify-content: space-between;padding: 15px 0;position: fixed;left: 0;bottom: 0;align-items: center;z-index: 10;background: #232a30;box-shadow: -37px -39px 48px #232a30, 0 0 0 blue, 0 0 0 red, 0 0 0 yellow;}
@@ -158,4 +159,6 @@ export default {
 .bot-menu .bot-btn p{font-size: 13px;padding-left: 32px;display: inline-block;}
 .bot-menu .bot-btn:nth-of-type(1) p{background: url(../assets/img/i-downl.png) left center no-repeat;background-size: 20px;}
 .bot-menu .bot-btn:nth-of-type(2) p{background: url(../assets/img/i-moon.png) left center no-repeat;background-size: 20px;}
+
+.menu.on{transform: translateX(0);}
 </style>
