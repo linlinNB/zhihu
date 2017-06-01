@@ -11,7 +11,16 @@ const store = new Vuex.Store({
     changeMenu (state) {
         state.menu_off = !state.menu_off
     }
- }
+ },
+  // actions: {
+  //   // 封装一个 ajax 方法
+  //   saveForm (context) {
+  //     axios({
+  //       method: 'get',
+  //       url: 'http://news-at.zhihu.com/api',
+  //     })
+  //   }
+  // }
 })
 
 export default store;

@@ -26,7 +26,7 @@
             </div>
           </router-link>
           <router-link to="/inside" >
-          <div class="list">
+          <div class="list" @click="menu_fade()">
             <span>日常心理学</span>
             <em class="i-r"></em>
           </div>
