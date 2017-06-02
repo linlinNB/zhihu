@@ -5,9 +5,9 @@
       <span class="menu-i" @click="menu_fade()">
       </span>
       </div>
-       <mt-swipe :auto="000">
-        <mt-swipe-item v-for="top in tops" >
-          <img :src="top.image">      
+      <mt-swipe :auto="3000">
+        <mt-swipe-item v-for="item in imgList" :key="item.id">
+          <img :src="item.image" width="100%">      
         </mt-swipe-item>
       </mt-swipe>
       <contentList></contentList>
@@ -15,6 +15,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import api from './../api/index'
 import contentList from '../components/contentList'
 import { mapState } from 'vuex';
@@ -35,19 +36,16 @@ export default {
   data () {
     return {
       msg: '',
-      // menu_off:false
-      // loading: false,
-      // list: [],
-      tops: []
+      imgList:[],
+      timeList:[]
     }
   },
   // 钩子函数/页面加载完运行
   mounted:function(){
-      // this.newfun();
-      this.getList(1)
-      // this.showList()
+    this.fetchData()
   },
   methods:{
+      //菜单动画
       menu_fade(){
       // this.menu_off = !this.menu_off
       // this.$store.state.menu_off = !this.$store.state.menu_off
@@ -56,32 +54,23 @@ export default {
       // alert(!this.$store.state.menu_off)
       this.$store.commit('changeMenu')
     },
-    getList(type) {
-      var vue = this;
-      if (type) {
-        api.getNews().then(function(data) {
-          vue.tops = data.data.top_stories;
-          vue.list.push(data.data);
-          vue.loading = false;
+    //调用首页最新消息
+    fetchData() {
+      // axios.get('api/news/latest').then((response) => {
+      //   this.imgList = response.data.top_stories;
+      //   console.log(this.data)
+      // }).catch((error) => {
+      //   console.log(error)
+      // })
+      api.getNews().then(res=>{
+        this.imgList = res.data.top_stories;
+        this.timeList.push(res.data)
+      }).catch((error) => {
+        console.log(error)
+      });
 
-        });
-      } else {
-        api.getNewsByDate(vue.GetDate(vue.count)).then(function(data) {
-          vue.list.push(data.data);
-          vue.loading = false;
-
-        });
-      }
     },
-   // showList(){
-   //    this.$ajax.get("news/latest").then((response) => {
-   //      // success
-   //      this.tops = response.data.top_stories;
-   //    }, (error) => {
-   //      // error
-   //      console.log(error)
-   //    });
-   // }
+
   }
 }
 </script>
@@ -90,6 +79,7 @@ export default {
 <style scoped>
 .index h1{color: #fff;font-size: 1.2rem;}
 .mint-swipe{height: 200px;position: relative;}
+.mint-swipe img{width: 100%;position: relative;top: 50%;transform: translateY(-50%);}
 .menu-i{width: 30px;height: 30px;display: inline-block;background: url(../assets/img/menu.png) center no-repeat ;position: absolute;;left: 10px;top: 10px;z-index: 1;background-size: 30px;}
 .header{height: 50px;width: 100%;position: fixed;left: 0;top: 0;line-height: 50px;z-index: 1;text-align: center;}
 .index-wrap.on{transform: translateX(188px);}

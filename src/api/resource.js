@@ -2,15 +2,15 @@ import {
 	API_ROOT
 } from './config.js'
 var apiZhihu = {
-	startimage: '/4/start-image/1080*1776',
-	news: '/4/news/latest',
-	newsbyid: '/4/news/',
-	newsbydate: '/4/news/before/',
-	newsinfo: '/4/story-extra',
-	topics: '/4/themes',
-	topicbyid: '/4/theme/',
-	sections: '/3/sections',
-	sectionbyid: '/3/section',
+	startimage: 'start-image/1080*1776',//启动界面图像获取
+	news: 'news/latest',//最新消息
+	newsbyid: 'news/',//消息内容获取与离线下载
+	newsbydate: 'news/before/',//过往消息
+	newsinfo: 'story-extra',//新闻额外信息
+	topics: 'themes',//主题日报列表查看
+	topicbyid: 'theme/',//主题日报内容查看
+	sections: 'sections',//栏目总览
+	sectionbyid: 'section',//栏目具体消息查看
 }
 export const NewsResource = API_ROOT.concat( apiZhihu.news )
 export const NewsIdResource = API_ROOT.concat( apiZhihu.newsbyid )

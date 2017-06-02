@@ -1,5 +1,4 @@
 var config = {
-	site: 'zhihu-agent.herokuapp.com',
-	method: '/get?api='
+	site: 'api/',
 }
-export const API_ROOT = 'https://'.concat( config.site, config.method )
+export const API_ROOT =  config.site 
