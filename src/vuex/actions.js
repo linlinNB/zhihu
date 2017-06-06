@@ -1,0 +1,1 @@
+export const hideAlert = ({dispatch}) => dispatch('HIDE_ALERT')
