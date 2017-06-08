@@ -1,15 +1,12 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import axios from 'axios'
-import actions from './actions'
-import getters from './getters'
-import state from './state'
-import mutations from './mutations'
-Vue.use(Vuex);
+import menu from './modules/menu'
+Vue.use(Vuex)
 
-export default new Vuex.Store({
-    state,
-    mutations,
-    actions,
-    getters
+const store = new Vuex.Store({
+  modules: {
+    menu
+  },
 })
+
+export default store;
