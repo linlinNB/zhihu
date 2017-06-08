@@ -1,3 +1,3 @@
 // actions里写有几个函数
-export const increment = ({ commit }) => commit('increment')
-export const decrement = ({ commit }) => commit('decrement')
+export const changeMenu = ({ commit }) => commit('changeMenu')
+export const insideFun = ({ commit }) => commit('insideFun')

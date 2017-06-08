@@ -19,59 +19,19 @@
       <div class="newList">
         <div class="liwrap">
           <router-link to="/" >
-              <div class="list" @click="menu_fade()">
+              <div class="list" @click="insideFun()">
               <i class="i-home"></i>
               <h2>首页</h2>
               <em class="i-h-r"></em>
             </div>
           </router-link>
-          <router-link to="/inside" >
-          <div class="list" @click="menu_fade()">
-            <span>日常心理学</span>
+          <router-link to="/inside" v-for="item in themeList" :key="item.id">
+          <div class="list" @click="insideFun()">
+            <span>{{item.name }}</span>
             <em class="i-r"></em>
           </div>
           </router-link>
-          <div class="list">
-            <span>用户推荐日报</span>
-            <em class="i-r"></em>
-          </div><div class="list">
-            <span>电影日报</span>
-            <em class="i-r"></em>
-          </div>
-          <div class="list">
-            <span>不许无聊</span>
-            <em class="i-r"></em>
-          </div>
-          <div class="list">
-            <span>设计日报</span>
-            <em class="i-r"></em>
-          </div><div class="list">
-            <span>大公司日报</span>
-            <em class="i-r"></em>
-          </div>
-          <div class="list">
-            <span>财经日报</span>
-            <em class="i-r"></em>
-          </div>
-          <div class="list">
-            <span>互联网安全</span>
-            <em class="i-r"></em>
-          </div><div class="list">
-            <span>开始游戏</span>
-            <em class="i-r"></em>
-          </div>
-          <div class="list">
-            <span>音乐日报</span>
-            <em class="i-r"></em>
-          </div>
-          <div class="list">
-            <span>动漫日报</span>
-            <em class="i-r"></em>
-          </div>
-          <div class="list">
-            <span>体育日报</span>
-            <em class="i-r"></em>
-          </div>
+
         </div>
       </div>
       <div class="bot-menu">
@@ -84,7 +44,8 @@
 </template>
 
 <script>
-// import contentList from '../components/contentList'
+import axios from 'axios'
+import api from './../api/index'
 import { mapState } from 'vuex';
 export default {
   created:function(){
@@ -94,7 +55,7 @@ export default {
   computed: mapState ([
     //计算属性
     // 映射 this.menu_off 为 store.state.menu_off
-    'menu_off'
+    'menu_off','newList'
   ]),
   name: 'index',
   components: {
@@ -103,24 +64,28 @@ export default {
   data () {
     return {
       msg: '',
-      // menu_off:false
+      themeList:[]
     }
   },
   // 钩子函数/页面加载完运行
   mounted:function(){
       // this.newfun();
-
+      this.getThemeList()
   },
   //方法
   methods:{
-      menu_fade(){
-      // this.menu_off = !this.menu_off
-      // this.$store.state.menu_off = !this.$store.state.menu_off
-      // console.log(this.menu_off)
-      // console.log(this.$store)
-      // alert(!this.$store.state.menu_off)
-      this.$store.commit('changeMenu')
-    }
+      insideFun(){
+      this.$store.commit('insideFun')
+    },
+    //获取日报列表
+      getThemeList() {
+      api.getTopics().then(res=>{
+        this.themeList = res.data.others;
+        console.log(this.themeList)
+      }).catch((error) => {
+        console.log(error)
+      });
+    },
   }
 }
 </script>

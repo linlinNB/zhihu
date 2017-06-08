@@ -1,7 +1,7 @@
 <template>
-  <div class="inside">
+  <div class="inside" :class="{on:menu_off}">
   	<div class="inhead bBor">
-  		<div class="goback"></div>
+  		<div class="goback" @click="menu_fade()"></div>
   			<h2>日常心理学</h2>
   		<div class="gor"></div>
   	</div>
@@ -19,21 +19,39 @@
 </template>
 
 <script>
+import axios from 'axios'
+import api from './../api/index'
+import { mapState } from 'vuex';
 import contentList from '../components/contentList'
 export default {
   name: 'inside',
   data () {
     return {
-      msg: ''
+      msg: '',
     }
   },
-  components:{contentList}
+  mounted:function(){
+  },
+  components:{contentList},
+    computed: mapState ([
+    //计算属性
+    // 映射 this.menu_off 为 store.state.menu_off
+    'menu_off'
+  ]),
+    methods:{
+        //菜单动画
+      menu_fade(){
+      this.$store.commit('changeMenu')
+      },
+
+    }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.inside{ }
+.inside{transition: all 0.5s;}
+.inside.on{transform: translateX(188px);}
 .inhead{height: 45px;display: flex;justify-content: space-between;align-items: center;background: url(../assets/img/p1.jpg) center no-repeat;background-size: 100%;}
 .inhead .goback{width: 45px;height: 45px;background: url(../assets/img/i-left.png) center no-repeat;background-size: 32px;}
 .inhead h2{font-size: 20px;color: #fff;font-weight: normal;letter-spacing: 1px;}

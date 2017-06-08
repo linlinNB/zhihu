@@ -36,32 +36,21 @@ export default {
   data () {
     return {
       msg: '',
-      imgList:[],
-      timeList:[]
+      imgList:[],//首页轮播图片
+      timeList:[],
     }
   },
-  // 钩子函数/页面加载完运行
+  // 页面加载完运行
   mounted:function(){
     this.fetchData()
   },
   methods:{
       //菜单动画
       menu_fade(){
-      // this.menu_off = !this.menu_off
-      // this.$store.state.menu_off = !this.$store.state.menu_off
-      // console.log(this.menu_off)
-      // console.log(this.$store)
-      // alert(!this.$store.state.menu_off)
       this.$store.commit('changeMenu')
     },
     //调用首页最新消息
     fetchData() {
-      // axios.get('api/news/latest').then((response) => {
-      //   this.imgList = response.data.top_stories;
-      //   console.log(this.data)
-      // }).catch((error) => {
-      //   console.log(error)
-      // })
       api.getNews().then(res=>{
         this.imgList = res.data.top_stories;
         this.timeList.push(res.data)

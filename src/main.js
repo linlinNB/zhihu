@@ -4,7 +4,7 @@ import Vue from 'vue'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 import App from './App.vue'
-import store from './vuex/store.js'
+import store from './vuex'
 import router from './router/router.js'
 // import VueAxios from 'vue-axios'
 

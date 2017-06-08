@@ -1,9 +1,10 @@
 // mutations里写函数怎样更改state
-export const increment = state => {
-    state.count = state.count + 1
+export const changeMenu = state => {
+    state.menu_off = !state.menu_off
 
 }
-export const decrement = state => {
-    state.count = state.count - 1
+export const insideFun = state => {
+    state.menu_off = !state.menu_off
+    state.newList = false
 
 }
