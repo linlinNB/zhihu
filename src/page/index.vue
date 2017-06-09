@@ -19,14 +19,14 @@
       <div class="newList">
         <div class="liwrap">
           <router-link to="/" >
-              <div class="list" @click="insideFun()">
+              <div class="list" @click="insideFun(),indexChangeTrue()">
               <i class="i-home"></i>
               <h2>首页</h2>
               <em class="i-h-r"></em>
             </div>
           </router-link>
           <router-link to="/inside" v-for="item in themeList" :key="item.id">
-          <div class="list" @click="insideFun()">
+          <div class="list" @click="insideFun(item.id)">
             <span>{{item.name }}</span>
             <em class="i-r"></em>
           </div>
@@ -49,7 +49,6 @@ import api from './../api/index'
 import { mapState } from 'vuex';
 export default {
   created:function(){
-    // alert(1)
 
   },
   computed: mapState ([
@@ -74,14 +73,19 @@ export default {
   },
   //方法
   methods:{
-      insideFun(){
-      this.$store.commit('insideFun')
+      indexChangeTrue(){
+        this.$store.dispatch('indexChangeTrue')
+      },
+      //把获取到的id传给insideFun
+      insideFun(themId){
+      this.$store.dispatch('insideFun',{themId:themId})
+      // console.log(themId)
     },
     //获取日报列表
       getThemeList() {
       api.getTopics().then(res=>{
         this.themeList = res.data.others;
-        console.log(this.themeList)
+        // console.log(this.themeList)
       }).catch((error) => {
         console.log(error)
       });

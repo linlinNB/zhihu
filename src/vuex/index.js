@@ -12,7 +12,7 @@ Vue.use(Vuex)
 const state = {
     menu_off:false, //menu按钮
     newList:true,//contentList判断是首页还是其他页面
-    newListId:0
+    newListId:11
 }
 
 const store = new Vuex.Store({

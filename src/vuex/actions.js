@@ -1,3 +1,4 @@
 // actions里写有几个函数
 export const changeMenu = ({ commit }) => commit('changeMenu')
-export const insideFun = ({ commit }) => commit('insideFun')
+export const insideFun = ({ commit },params) => commit('insideFun',params)
+export const indexChangeTrue = ({ commit }) => commit('indexChangeTrue')

@@ -1,11 +1,10 @@
 <template>
   <div class="contentList">
-  {{newList}}
   	<div class="list bBor" v-for="item in NewList">
   		<div class="txt">
   			{{item.title}}
   		</div>
-  		<div class="pic">
+  		<div class="pic" v-if="item.images">
   			<img :src="item.images">
   		</div>
 
@@ -23,24 +22,34 @@ export default {
   data () {
     return {
       msg: '',
-      NewList:[],//首页今日新闻
+      NewList:[],//首页今日新闻和内页的新闻列表
+      newID:{}
     }
   },
   computed: mapState ([
     //计算属性
     // 映射 this.menu_off 为 store.state.menu_off
-    'newList'
+    'newList','newListId'
   ]),
   created:function(){
-    this.indexOrInside()
+    // this.indexOrInside()
 
   },
     // 页面加载完运行
   mounted:function(){
     this.indexOrInside()
   },
+  watch: {
+    // 如果 newListId 发生改变，这个函数就会运行
+    newListId: function (){
+      // alert(this.newListId)
+      this.indexOrInside()
+    }
+  },
   methods:{
       indexOrInside() {
+        // console.log(this.newListId)
+        // console.log(this.newList)
         if(this.newList){
           //调用首页的新闻
             api.getNews().then(res=>{
@@ -51,9 +60,9 @@ export default {
             });
         }else{
           //获取主体日报数据
-          api.getTopicsById(2).then(res=>{
+          api.getTopicsById(this.newListId.themId).then(res=>{
             this.NewList = res.data.stories;
-            console.log(this.NewList)
+            // console.log(this.NewList)
           }).catch((error) => {
             console.log(error)
           });

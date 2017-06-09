@@ -7,7 +7,8 @@
       </div>
       <mt-swipe :auto="3000">
         <mt-swipe-item v-for="item in imgList" :key="item.id">
-          <img :src="item.image" width="100%">      
+          <img :src="item.image" width="100%"> 
+          <h2>{{item.title}}</h2>     
         </mt-swipe-item>
       </mt-swipe>
       <contentList></contentList>
@@ -54,6 +55,7 @@ export default {
       api.getNews().then(res=>{
         this.imgList = res.data.top_stories;
         this.timeList.push(res.data)
+        // console.log(this.newTitle)
       }).catch((error) => {
         console.log(error)
       });
@@ -73,4 +75,5 @@ export default {
 .header{height: 50px;width: 100%;position: fixed;left: 0;top: 0;line-height: 50px;z-index: 1;text-align: center;}
 .index-wrap.on{transform: translateX(188px);}
 .index-wrap{transform: translateX(0);transition: all 0.5s}
+.mint-swipe h2{color: #fff;font-size: 16px;position: absolute;padding: 0 15px;left: 0;bottom: 15px;height: 38px;box-sizing: border-box;}
 </style>

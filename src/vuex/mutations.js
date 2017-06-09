@@ -3,8 +3,13 @@ export const changeMenu = state => {
     state.menu_off = !state.menu_off
 
 }
-export const insideFun = state => {
+export const insideFun = (state,themId) => {
     state.menu_off = !state.menu_off
     state.newList = false
-
+    state.newListId = themId
+    // console.log(state)
+    // console.log(themId)
+}
+export const indexChangeTrue = state => {
+    state.newList = true
 }
