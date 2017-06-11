@@ -54,7 +54,7 @@ export default {
     //菜单动画
     menu_fade(){
     this.$store.commit('changeMenu')
-  },
+    },
     //获取日报列表
     getThemeList() {
     api.getTopics().then(res=>{
@@ -62,11 +62,9 @@ export default {
       const _this = this;
       this.themeList.forEach(e=>{
         if( e.id==this.newListId.themId){
-          _this.titNum=e.id
           this.tit = e.name
         }
       })
-      this.Objtit = this.themeList[this.titNum]
       //this.themeList
       console.log(this.tit)
     }).catch((error) => {

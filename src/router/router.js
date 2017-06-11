@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import index from '../page/index'
 import home from '../page/home'
 import inside from '../page/inside'
+import homeInside from '../page/homeInside'
 Vue.use(VueRouter)
 
 const routes = [
@@ -17,6 +18,10 @@ const routes = [
         	{
 				path:"/inside",
 		        component: inside,
+			},
+	        {
+	    		path:"/homeInside",
+	    		component: homeInside,
 			}
         ]
 	},

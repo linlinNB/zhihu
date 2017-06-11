@@ -1,14 +1,17 @@
 <template>
     <div class="index-wrap" :class="{on:menu_off}">
+
       <div class="header">
           <h1>今日热闻</h1>
       <span class="menu-i" @click="menu_fade()">
       </span>
       </div>
-      <mt-swipe :auto="3000">
+      <mt-swipe :auto="0">
         <mt-swipe-item v-for="item in imgList" :key="item.id">
-          <img :src="item.image" width="100%"> 
-          <h2>{{item.title}}</h2>     
+        <router-link to="/homeInside">
+          <img :src="item.image" width="100%" @click="goNewdetails(item.id)"> 
+          <h2>{{item.title}}</h2> 
+         </router-link> 
         </mt-swipe-item>
       </mt-swipe>
       <contentList></contentList>
@@ -61,19 +64,24 @@ export default {
       });
 
     },
-
+    //首页点击跳转详情页
+    goNewdetails(newsId){
+      this.$store.dispatch('goNewdetails',{newsId:newsId})
+      console.log(newsId)
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.index h1{color: #fff;font-size: 1.2rem;}
+.index h1{color: #fff;font-size: 1.2rem;z-index: 2}
 .mint-swipe{height: 200px;position: relative;}
-.mint-swipe img{width: 100%;position: relative;top: 50%;transform: translateY(-50%);}
+.mint-swipe img{width: 100%;position: relative;top: 50%;transform: translateY(-50%);z-index: 0;filter: brightness(90%);}
 .menu-i{width: 30px;height: 30px;display: inline-block;background: url(../assets/img/menu.png) center no-repeat ;position: absolute;;left: 10px;top: 10px;z-index: 1;background-size: 30px;}
 .header{height: 50px;width: 100%;position: fixed;left: 0;top: 0;line-height: 50px;z-index: 1;text-align: center;}
 .index-wrap.on{transform: translateX(188px);}
 .index-wrap{transform: translateX(0);transition: all 0.5s}
-.mint-swipe h2{color: #fff;font-size: 16px;position: absolute;padding: 0 15px;left: 0;bottom: 15px;height: 38px;box-sizing: border-box;}
+.mint-swipe h2{color: #fff;font-size: 16px;position: absolute;padding: 0 15px;left: 0;bottom: 15px;height: 38px;box-sizing: border-box;z-index: 2}
+/*.pop{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: rgba(0,0,0,.3);z-index: 1}*/
 </style>

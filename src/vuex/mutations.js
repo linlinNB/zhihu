@@ -13,3 +13,6 @@ export const insideFun = (state,themId) => {
 export const indexChangeTrue = state => {
     state.newList = true
 }
+export const goNewdetails = (state,newsId) => {
+    state.homeNewId = newsId
+}
