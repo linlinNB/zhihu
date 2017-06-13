@@ -1,6 +1,7 @@
 <template>
   <div class="contentList">
-  	<div class="list bBor" v-for="item in NewList">
+  <router-link to="/homeInside" v-for="item in NewList" :key="item.id" >
+  	<div class="list bBor" @click="goNewdetails(item.id)">
   		<div class="txt">
   			{{item.title}}
   		</div>
@@ -9,7 +10,7 @@
   		</div>
 
   	</div>
-
+  </router-link>
   </div>
 </template>
 
@@ -67,7 +68,11 @@ export default {
             console.log(error)
           });
         }
-      }
+      },
+    //主题日报列表点击跳转详情页
+    goNewdetails(newsId){
+      this.$store.dispatch('goNewdetails',{newsId:newsId})
+    }
   },
 
 }

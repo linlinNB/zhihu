@@ -2,10 +2,10 @@
   <div class="home-details">
   	<div class="banner" v-if="data.image">
   		<div class="pic">
-  		    <img :src="data.image" height="100%">
+  		    <img :src="data.image" width="100%">
   		</div>
   		<h2>{{data.title}}</h2>
-  		<div class="imgFrom">图片:《来自巴拉巴拉》</div>
+<!--   		<div class="imgFrom">图片:{{data.title}}</div> -->
   	</div>
 <!--   	<div class="btit">职场怎么样的问题我说撒了离开速度都很实用你速度也完全拉起按时到几号到数据库时刻就爱上</div>
   	<div class="content">
@@ -53,8 +53,7 @@ export default {
   			this.data = rel.data
   			this.body = rel.data.body
   			this.css = rel.data.css
-  			console.log(this.body)
-  			console.log(this.css)
+  			// console.log(this.body)
   		}).catch((error) => {
             console.log(error)
         });
@@ -69,16 +68,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import url("http://news.at.zhihu.com/css/news_qa.auto.css?v=1edab");
+  @import '../assets/css/news_qa.auto.css';
+
 .headline{display: none;}
 .headline .img-place-holder{display: none;height: 0}
 .home-details{background: #f6f6f6;}
 .banner{position: relative;height: 220px;overflow: hidden;margin-bottom: 4px;}
-.banner .pic{font-size: 0;width: 100%;}
-.banner .pic img{    filter: brightness(90%);}
-.banner h2{font-size: 20px;color: #fff;line-height: 24px;padding: 20px 15px;width: 100%;height: 86px;box-sizing: border-box;position: absolute;bottom: 0;left: 0;font-weight: normal;}
+.banner .pic{font-size: 0;width: 100%;position: relative;height: 100%;}
+.banner .pic img{    filter: brightness(90%);position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);}
+.banner h2{font-size: 20px;color: #fff;line-height: 24px;padding: 0 15px;width: 100%;height: 86px;box-sizing: border-box;position: absolute;bottom: 0;left: 0;font-weight: normal;}
 .banner .imgFrom{font-size: 10px;color: #fff;position: absolute;right: 15px;bottom: 10px;}
-.btit{padding: 15px;font-size: 18px;line-height: 26px;color: #616466;margin-bottom: 4px;background: #fff;}
+/*.btit{padding: 15px;font-size: 18px;line-height: 26px;color: #616466;margin-bottom: 4px;background: #fff;}
 .content{padding: 15px;background: #fff;}
 .content .contit{font-size: 18px;line-height: 26px;color: #494b4d;margin-bottom: 15px;font-weight: normal;}
 .content .author{width: 100%;display: flex;margin-bottom: 15px;justify-content: flex-start;}
@@ -86,7 +86,7 @@ export default {
 .content .authorImg .auPic{width: 22px;height: 22px;margin-right: 10px;overflow: hidden;font-size: 0;display: inline-block;}
 .content .authorImg span{font-size: 15px;color: #444444;margin-right: 10px;display: inline-block;position: relative;top: -5px;}
 .content .interesting{font-size: 15px;color: #999999;}
-.content .contxt{font-size: 18px;line-height: 26px;color: #616466;}
+.content .contxt{font-size: 18px;line-height: 26px;color: #616466;}*/
 
 .question {
   overflow: hidden;

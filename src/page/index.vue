@@ -107,11 +107,11 @@ export default {
 .menu .user-name{flex: auto;}
 .menu .set{width: 100%;display: flex;justify-content: center;;}
 .menu .set-i{flex: 1;}
-.menu .set-i p{padding-top: 25px;text-align: center;font-size: 12px;color: #94999d;}
+.menu .set-i p{padding-top: 25px;text-align: center;font-size: 12px;color: #94999d;margin: 0 0 !important}
 .menu .set-i:nth-of-type(1) p{background: url(../assets/img/i-coll.png) center top no-repeat;background-size: 25px;}
 .menu .set-i:nth-of-type(2) p{background: url(../assets/img/i-msg.png) center top no-repeat;background-size: 25px;}
 .menu .set-i:nth-of-type(3) p{background: url(../assets/img/i-set.png) center top no-repeat;background-size: 25px;}
-.newList{width: 100%;position: relative;;top: 99px;}
+.newList{width: 100%;position: relative;;top: 105px;}
 .newList .list{padding: 15px;box-sizing: border-box;font-size: 14px;color: #94999d;display: flex;justify-content: space-between;position: relative;width: 100%;align-items: center;}
 .newList .i-home{display: inline-block;background: url(../assets/img/i-home.png)center no-repeat;background-size: 100%;width: 24px;height: 24px;position: absolute;left: 15px;top: 50%;transform: translateY(-50%);}
 .newList h2{font-size: 14px;padding-left: 45px;}
