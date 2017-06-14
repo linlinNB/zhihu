@@ -1,7 +1,6 @@
 // mutations里写函数怎样更改state
 export const changeMenu = state => {
     state.menu_off = !state.menu_off
-
 }
 export const insideFun = (state,themId) => {
     state.menu_off = !state.menu_off
@@ -15,4 +14,11 @@ export const indexChangeTrue = state => {
 }
 export const goNewdetails = (state,newsId) => {
     state.homeNewId = newsId
+}
+export const homePopTrue = state => {
+    state.homePop = true;
+}
+export const homePopFalse = state => {
+    state.homePop = false;
+    state.menu_off = !state.menu_off
 }

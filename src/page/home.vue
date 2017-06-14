@@ -1,9 +1,12 @@
 <template>
     <div class="index-wrap" :class="{on:menu_off}">
-
+    <!--     遮罩层 -->
+    <div class="pop" v-if='homePop' @click="homePopFalse()">
+      
+    </div>
       <div class="header">
           <h1>今日热闻</h1>
-      <span class="menu-i" @click="menu_fade()">
+      <span class="menu-i" @click="menu_fade(),homePopTrue()" >
       </span>
       </div>
       <mt-swipe :auto="0">
@@ -31,7 +34,7 @@ export default {
   computed: mapState ([
     //计算属性
     // 映射 this.menu_off 为 store.state.menu_off
-    'menu_off'
+    'menu_off','homePop'
   ]),
   name: 'index',
   components: {
@@ -42,6 +45,7 @@ export default {
       msg: '',
       imgList:[],//首页轮播图片
       timeList:[],
+      
     }
   },
   // 页面加载完运行
@@ -49,8 +53,16 @@ export default {
     this.fetchData()
   },
   methods:{
-      //菜单动画
-      menu_fade(){
+    //菜单点击false
+    homePopFalse(){
+      this.$store.commit('homePopFalse')
+    },
+    //菜单点击true
+    homePopTrue(){
+      this.$store.commit('homePopTrue')
+    },
+    //菜单动画
+    menu_fade(){
       this.$store.commit('changeMenu')
     },
     //调用首页最新消息
@@ -75,6 +87,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.pop{position: absolute;;left: 0;top: 0;width: 100%;height: 100%;z-index: 10}
 .index h1{color: #fff;font-size: 1.2rem;z-index: 2}
 .mint-swipe{height: 200px;position: relative;}
 .mint-swipe img{width: 100%;position: relative;top: 50%;transform: translateY(-50%);z-index: 0;filter: brightness(90%);}

@@ -1,8 +1,10 @@
 <template>
   <div class="home-details">
+  <div class="goback" @click="goBack"></div>
   	<div class="banner" v-if="data.image">
   		<div class="pic">
   		    <img :src="data.image" width="100%">
+  		    
   		</div>
   		<h2>{{data.title}}</h2>
 <!--   		<div class="imgFrom">图片:{{data.title}}</div> -->
@@ -57,12 +59,14 @@ export default {
   		}).catch((error) => {
             console.log(error)
         });
+  	},
+  	  	goBack(){
+  		history.back()
   	}
   },
   mounted:function(){
   	this.getNewsId()
   },
-  
 }
 </script>
 
@@ -78,6 +82,7 @@ export default {
 .banner .pic img{    filter: brightness(90%);position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);}
 .banner h2{font-size: 20px;color: #fff;line-height: 24px;padding: 0 15px;width: 100%;height: 86px;box-sizing: border-box;position: absolute;bottom: 0;left: 0;font-weight: normal;}
 .banner .imgFrom{font-size: 10px;color: #fff;position: absolute;right: 15px;bottom: 10px;}
+.goback{width: 45px;height: 45px;background: url(../assets/img/i-left.png) center no-repeat;background-size: 32px;position: absolute;;left: 0;top: 0;z-index: 1}
 /*.btit{padding: 15px;font-size: 18px;line-height: 26px;color: #616466;margin-bottom: 4px;background: #fff;}
 .content{padding: 15px;background: #fff;}
 .content .contit{font-size: 18px;line-height: 26px;color: #494b4d;margin-bottom: 15px;font-weight: normal;}
