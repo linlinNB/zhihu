@@ -79,6 +79,7 @@ export default {
       //把获取到的id传给insideFun
       insideFun(themId){
       this.$store.dispatch('insideFun',{themId:themId})
+
       // console.log(themId)
     },
     //获取日报列表

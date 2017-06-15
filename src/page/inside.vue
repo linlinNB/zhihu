@@ -1,7 +1,9 @@
 <template>
   <div class="inside" :class="{on:menu_off}">
+    <!--     遮罩层 -->
+    <div class="pop" v-if='homePop' @click="homePopFalse()"></div>
   	<div class="inhead bBor">
-  		<div class="goback" @click="menu_fade()"></div>
+  		<div class="goback" @click="menu_fade(),homePopTrue()"></div>
   			<h2>{{this.tit}}</h2>
   		<div class="gor"></div>
   	</div>
@@ -40,7 +42,7 @@ export default {
   computed: mapState ([
     //计算属性
     // 映射 this.menu_off 为 store.state.menu_off
-    'menu_off','newListId'
+    'menu_off','newListId','homePop'
   ]),
   watch: {
     // 如果 newListId 发生改变，这个函数就会运行
@@ -51,6 +53,15 @@ export default {
     }
   },
   methods:{
+    //菜单点击false
+    homePopFalse(){
+      this.$store.commit('homePopFalse')
+    },
+    //菜单点击true
+    homePopTrue(){
+      this.$store.commit('homePopTrue')
+      console.log(this.homePop)
+    },
     //菜单动画
     menu_fade(){
     this.$store.commit('changeMenu')
@@ -66,7 +77,7 @@ export default {
         }
       })
       //this.themeList
-      console.log(this.tit)
+      // console.log(this.tit)
     }).catch((error) => {
       console.log(error)
     });
@@ -79,6 +90,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.pop{position: absolute;;left: 0;top: 0;width: 100%;height: 100%;z-index: 10}
 .inside{transition: all 0.5s;}
 .inside.on{transform: translateX(188px);}
 .inhead{height: 45px;display: flex;justify-content: space-between;align-items: center;background: url(../assets/img/p1.jpg) center no-repeat;background-size: 100%;}

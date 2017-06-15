@@ -1,9 +1,7 @@
 <template>
     <div class="index-wrap" :class="{on:menu_off}">
     <!--     遮罩层 -->
-    <div class="pop" v-if='homePop' @click="homePopFalse()">
-      
-    </div>
+    <div class="pop" v-if='homePop' @click="homePopFalse()"></div> 
       <div class="header">
           <h1>今日热闻</h1>
       <span class="menu-i" @click="menu_fade(),homePopTrue()" >
@@ -60,6 +58,8 @@ export default {
     //菜单点击true
     homePopTrue(){
       this.$store.commit('homePopTrue')
+      // console.log("点击menu了")
+
     },
     //菜单动画
     menu_fade(){
@@ -79,7 +79,7 @@ export default {
     //首页点击跳转详情页
     goNewdetails(newsId){
       this.$store.dispatch('goNewdetails',{newsId:newsId})
-      console.log(newsId)
+      // console.log(newsId)
     }
   }
 }

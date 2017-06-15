@@ -6,6 +6,7 @@ export const insideFun = (state,themId) => {
     state.menu_off = !state.menu_off
     state.newList = false
     state.newListId = themId
+    state.homePop = false;
     // console.log(state)
     // console.log(themId)
 }
