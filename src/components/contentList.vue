@@ -1,5 +1,8 @@
 <template>
-  <div class="contentList">
+
+  <div class="contentList" v-infinite-scroll="loadMore"infinite-scroll-disabled="loading"infinite-scroll-distance="10">
+
+
   <router-link to="/homeInside" v-for="item in NewList" :key="item.id" >
   	<div class="list bBor" @click="goNewdetails(item.id)">
   		<div class="txt">
@@ -24,7 +27,11 @@ export default {
     return {
       msg: '',
       NewList:[],//首页今日新闻和内页的新闻列表
-      newID:{}
+      newID:{},
+      count:1,
+      beforeList:[],
+              speed:0.5,
+        show:false
     }
   },
   computed: mapState ([
@@ -39,6 +46,7 @@ export default {
     // 页面加载完运行
   mounted:function(){
     this.indexOrInside()
+
   },
   watch: {
     // 如果 newListId 发生改变，这个函数就会运行
@@ -48,6 +56,25 @@ export default {
     }
   },
   methods:{
+
+    //获取下拉往日消息
+    getBeforeNews(){
+      api.getNewsByDate(this.GetDate(this.count)).then(rel=>{
+        rel.data.stories.forEach(e=>{
+          this.NewList.push(e) 
+        })
+        // this.NewList.push() 
+        // console.log(this.NewList)
+      });
+    },
+    loadMore() {
+      this.loading = true;
+      setTimeout(() => {
+        this.count--;
+        this.getBeforeNews()
+        this.loading = false;
+      }, 2500);
+    },
       indexOrInside() {
         // console.log(this.newListId)
         // console.log(this.newList)
@@ -72,6 +99,17 @@ export default {
     //主题日报列表点击跳转详情页
     goNewdetails(newsId){
       this.$store.dispatch('goNewdetails',{newsId:newsId})
+    },
+    //计算时间
+    GetDate(Count) {
+      var dd = new Date();
+      dd.setDate(dd.getDate() + Count); //获取AddDayCount天后的日期
+      var y = dd.getFullYear();
+      var m = dd.getMonth() + 1; //获取当前月份的日期
+      m = m > 10 ? m : "0" + m
+      var d = dd.getDate();
+      d = d >= 10 ? d : "0" + d;
+      return y + "" + m + "" + d;
     }
   },
 
@@ -80,6 +118,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.gotop{position: fixed;right: 10px;bottom: 30px;color: #000;}
 .contentList{padding: 0 15px;box-sizing: border-box;background: #fff}
 .list{padding: 15px 0;box-sizing: border-box;height: 88px;display: flex;justify-content: space-between;position: relative;}
 .list .txt{font-size: 14px;color: #000;line-height: 18px;flex: 3}
