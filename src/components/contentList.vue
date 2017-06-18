@@ -18,10 +18,14 @@
 </template>
 
 <script>
+
 import axios from 'axios'
 import api from './../api/index'
 import { mapState } from 'vuex';
 export default {
+  components:{
+    
+  },
   name: 'contentList',
   data () {
     return {

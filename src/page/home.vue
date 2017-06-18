@@ -1,8 +1,9 @@
 <template>
     <div class="index-wrap" :class="{on:menu_off}">
+    <backScroll></backScroll>
     <!--     遮罩层 -->
     <div class="pop" v-if='homePop' @click="homePopFalse()"></div> 
-      <div class="header">
+      <div class="header" :class="{on:menu_off}" id='head'>
           <h1>今日热闻</h1>
       <span class="menu-i" @click="menu_fade(),homePopTrue()" >
       </span>
@@ -20,6 +21,7 @@
 </template>
 
 <script>
+import backScroll from '../components/backScroll'
 import axios from 'axios'
 import api from './../api/index'
 import contentList from '../components/contentList'
@@ -36,7 +38,7 @@ export default {
   ]),
   name: 'index',
   components: {
-    contentList
+    contentList,backScroll
   },
   data () {
     return {
@@ -87,14 +89,15 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.pop{position: absolute;;left: 0;top: 0;width: 100%;height: 100%;z-index: 10}
-.index h1{color: #fff;font-size: 1.2rem;z-index: 2}
+.pop{position: absolute;left: 0;top: 0;width: 100%;height: 100%;z-index: 10}
+.index h1{color: #fff;font-size: 1.2rem;z-index: 2;margin: 0 auto;}
 .mint-swipe{height: 200px;position: relative;}
-.mint-swipe img{width: 100%;position: relative;top: 50%;transform: translateY(-50%);z-index: 0;filter: brightness(90%);}
+.mint-swipe img{width: 100%;position: relative;top: 50%;transform: translateY(-50%);z-index: 0;filter: brightness(80%);}
 .menu-i{width: 30px;height: 30px;display: inline-block;background: url(../assets/img/menu.png) center no-repeat ;position: absolute;;left: 10px;top: 10px;z-index: 1;background-size: 30px;}
 .header{height: 50px;width: 100%;position: fixed;left: 0;top: 0;line-height: 50px;z-index: 1;text-align: center;}
-.index-wrap.on{transform: translateX(188px);}
-.index-wrap{transform: translateX(0);transition: all 0.5s}
+.index-wrap.on{position: relative;left: 188px;}
+.index-wrap{left: 0;transition: left 0.5s;position: relative;}
+.header.on{position: absolute;left: 0;top: 0}
 .mint-swipe h2{color: #fff;font-size: 16px;position: absolute;padding: 0 15px;left: 0;bottom: 15px;height: 38px;box-sizing: border-box;z-index: 2}
 /*.pop{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: rgba(0,0,0,.3);z-index: 1}*/
 </style>

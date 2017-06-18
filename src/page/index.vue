@@ -1,6 +1,7 @@
 <template>
   <div class="index">
-    <router-view></router-view>
+
+      <router-view></router-view>
 
     <div class="menu" :class="{on:menu_off}">
       <div class="user">
@@ -34,7 +35,7 @@
 
         </div>
       </div>
-      <div class="bot-menu">
+      <div class="bot-menu" :class="{on:menu_off}">
         <div class="bot-btn"><p>完成</p></div>
         <div class="bot-btn"><p>夜间</p></div>
       </div>
@@ -100,8 +101,8 @@ export default {
 /*@import '../assets/css/style.css'*/
 .index{overflow: hidden;}
 
-.menu{width: 188px;background: #232a30;position: fixed;top: 0;z-index: 10;height: 100%;transform: translateX(-188px);transition: all 0.5s}
-.menu.on{transform: translateX(0);}
+.menu{width: 188px;background: #232a30;position: fixed;top: 0;z-index: 10;height: 100%;left: -188px;transition: all 0.5s}
+.menu.on{left: 0;}
 .menu .user{padding: 10px;box-sizing: border-box;width: 100%;position: absolute;left: 0;top: 0;}
 .menu .tit{width: 100%;display: flex;justify-content: space-between;line-height: 35px;color: #94999d;font-size: 14px;margin-bottom: 10px;}
 .menu .pic-user{width: 35px;height: 35px;border-radius: 50%;background: #fff;overflow: hidden;font-size: 0;margin-right: 10px;}
@@ -122,7 +123,8 @@ export default {
  
 .newList .liwrap::-webkit-scrollbar {/*隐藏滚轮*/display: none;}
 
-.bot-menu{width: 188px;display: flex;justify-content: space-between;padding: 15px 0;position: fixed;left: 0;bottom: 0;align-items: center;z-index: 10;background: #232a30;box-shadow: -37px -39px 48px #232a30, 0 0 0 blue, 0 0 0 red, 0 0 0 yellow;}
+.bot-menu{width: 188px;display: flex;justify-content: space-between;padding: 15px 0;position: fixed;left: 0;bottom: 0;align-items: center;z-index: 10;background: #232a30;box-shadow: -37px -39px 48px #232a30, 0 0 0 blue, 0 0 0 red, 0 0 0 yellow;left: -188px;transition: left .5s}
+.bot-menu.on{left: 0;}
 .bot-menu .bot-btn{flex: 1;text-align: center;color: #94999d}
 .bot-menu .bot-btn p{font-size: 13px;padding-left: 32px;display: inline-block;}
 .bot-menu .bot-btn:nth-of-type(1) p{background: url(../assets/img/i-downl.png) left center no-repeat;background-size: 20px;}

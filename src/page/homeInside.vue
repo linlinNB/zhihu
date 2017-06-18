@@ -7,24 +7,8 @@
   		    
   		</div>
   		<h2>{{data.title}}</h2>
-<!--   		<div class="imgFrom">图片:{{data.title}}</div> -->
   	</div>
-<!--   	<div class="btit">职场怎么样的问题我说撒了离开速度都很实用你速度也完全拉起按时到几号到数据库时刻就爱上</div>
-  	<div class="content">
-  		<div class="contit">这是标题</div>
-  		<div class="author">
-  			<div class="authorImg">
-  				<div class="auPic">
-  					<img src="../assets/img/face.jpg" width="100%">
-  				</div>
-  				<span>HuaBingTao,</span>
-  			</div>
-  			<div class="interesting">前端老司机</div>
-  		</div>
-  		<div class="contxt">
-  			致那些即将失去的阿红的灵魂萨都剌和萨拉的机会阿什利萨芬的喝酒诶侮辱妇女为偶然奶萨度日那是猥琐带你阿里看到你洒了可觉得io上单你萨法里家乐福实地平时对方哦史蒂夫看；十分平静哦等级分IE吗平时的风景
-  		</div>
-  	</div> -->
+
   	<div v-html="body" :style="{css}"></div>
   </div>
 </template>

@@ -1,5 +1,6 @@
 <template>
   <div class="inside" :class="{on:menu_off}">
+  <backScroll></backScroll>
     <!--     遮罩层 -->
     <div class="pop" v-if='homePop' @click="homePopFalse()"></div>
   	<div class="inhead bBor">
@@ -21,6 +22,7 @@
 </template>
 
 <script>
+import backScroll from '../components/backScroll'
 import axios from 'axios'
 import api from './../api/index'
 import { mapState , mapActions} from 'vuex';
@@ -37,7 +39,7 @@ export default {
     this.getThemeList()
   },
   components:{
-    contentList
+    contentList,backScroll
   },
   computed: mapState ([
     //计算属性
@@ -90,9 +92,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.pop{position: absolute;;left: 0;top: 0;width: 100%;height: 100%;z-index: 10}
-.inside{transition: all 0.5s;}
-.inside.on{transform: translateX(188px);}
+.pop{position: absolute;left: 0;top: 0;width: 100%;height: 100%;z-index: 10}
+.inside{transition: all 0.5s;position: relative;left: 0;}
+.inside.on{left: 188px;}
+.content img{margin: 0;}
 .inhead{height: 45px;display: flex;justify-content: space-between;align-items: center;background: url(../assets/img/p1.jpg) center no-repeat;background-size: 100%;}
 .inhead .goback{width: 45px;height: 45px;background: url(../assets/img/i-left.png) center no-repeat;background-size: 32px;}
 .inhead h2{font-size: 20px;color: #fff;font-weight: normal;letter-spacing: 1px;}
