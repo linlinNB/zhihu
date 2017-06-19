@@ -22,6 +22,7 @@
 </template>
 
 <script>
+import { Indicator } from 'mint-ui';
 import backScroll from '../components/backScroll'
 import axios from 'axios'
 import api from './../api/index'
@@ -37,6 +38,10 @@ export default {
   },
   mounted:function(){
     this.getThemeList()
+    Indicator.open({
+      text: '加载中...',
+      spinnerType: 'snake'
+    });
   },
   components:{
     contentList,backScroll
@@ -72,6 +77,7 @@ export default {
     getThemeList() {
     api.getTopics().then(res=>{
       this.themeList = res.data.others;
+      setTimeout(function(){Indicator.close();},1000);
       const _this = this;
       this.themeList.forEach(e=>{
         if( e.id==this.newListId.themId){
@@ -96,6 +102,7 @@ export default {
 .inside{transition: all 0.5s;position: relative;left: 0;}
 .inside.on{left: 188px;}
 .content img{margin: 0;}
+.content{margin: 0;}
 .inhead{height: 45px;display: flex;justify-content: space-between;align-items: center;background: url(../assets/img/p1.jpg) center no-repeat;background-size: 100%;}
 .inhead .goback{width: 45px;height: 45px;background: url(../assets/img/i-left.png) center no-repeat;background-size: 32px;}
 .inhead h2{font-size: 20px;color: #fff;font-weight: normal;letter-spacing: 1px;}

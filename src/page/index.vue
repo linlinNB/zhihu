@@ -119,7 +119,7 @@ export default {
 .newList h2{font-size: 14px;padding-left: 45px;}
 .newList .i-h-r{display: inline-block;width: 16px;height: 16px;background: url(../assets/img/i-r.png)center no-repeat;background-size: 15px;}
 .newList .i-r{display: inline-block;width: 16px;height: 16px;background: url(../assets/img/i-add.png)center no-repeat;background-size: 15px;}
-.newList .liwrap{width: 100%;height: 510px;overflow-x: hidden;z-index: 9} 
+.newList .liwrap{width: 100%;height: 510px;overflow-x: hidden;z-index: 9;} 
  
 .newList .liwrap::-webkit-scrollbar {/*隐藏滚轮*/display: none;}
 

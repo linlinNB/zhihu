@@ -4,7 +4,6 @@
   	<div class="banner" v-if="data.image">
   		<div class="pic">
   		    <img :src="data.image" width="100%">
-  		    
   		</div>
   		<h2>{{data.title}}</h2>
   	</div>
@@ -14,6 +13,7 @@
 </template>
 
 <script>
+import { Indicator } from 'mint-ui';
 import axios from 'axios'
 import api from './../api/index'
 import { mapState } from 'vuex';
@@ -34,11 +34,11 @@ export default {
   methods:{
   	//获取newsId后渲染列表
   	getNewsId(){
-  		console.log(this.homeNewId)
+  		// console.log(this.homeNewId)
   		api.getNewsById(this.homeNewId.newsId).then(rel=>{
   			this.data = rel.data
   			this.body = rel.data.body
-  			this.css = rel.data.css
+  			setTimeout(function(){Indicator.close();},1000);
   			// console.log(this.body)
   		}).catch((error) => {
             console.log(error)
@@ -50,6 +50,10 @@ export default {
   },
   mounted:function(){
   	this.getNewsId()
+    Indicator.open({
+  text: '加载中...',
+  spinnerType: 'snake'
+});
   },
 }
 </script>

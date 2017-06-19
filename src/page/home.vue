@@ -21,6 +21,7 @@
 </template>
 
 <script>
+import { Indicator } from 'mint-ui';
 import backScroll from '../components/backScroll'
 import axios from 'axios'
 import api from './../api/index'
@@ -28,8 +29,6 @@ import contentList from '../components/contentList'
 import { mapState } from 'vuex';
 export default {
   created:function(){
-    // alert(1)
-
   },
   computed: mapState ([
     //计算属性
@@ -51,6 +50,10 @@ export default {
   // 页面加载完运行
   mounted:function(){
     this.fetchData()
+    Indicator.open({
+      text: '加载中...',
+      spinnerType: 'fading-circle'
+    })
   },
   methods:{
     //菜单点击false
@@ -69,14 +72,16 @@ export default {
     },
     //调用首页最新消息
     fetchData() {
+
       api.getNews().then(res=>{
         this.imgList = res.data.top_stories;
         this.timeList.push(res.data)
+
+        setTimeout(function(){Indicator.close();},1000);
         // console.log(this.newTitle)
       }).catch((error) => {
         console.log(error)
       });
-
     },
     //首页点击跳转详情页
     goNewdetails(newsId){
