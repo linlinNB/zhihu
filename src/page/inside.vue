@@ -3,7 +3,7 @@
   <backScroll></backScroll>
     <!--     遮罩层 -->
     <div class="pop" v-if='homePop' @click="homePopFalse()"></div>
-  	<div class="inhead bBor">
+  	<div class="inhead bBor" id="inhead">
   		<div class="goback" @click="menu_fade(),homePopTrue()"></div>
   			<h2>{{this.tit}}</h2>
   		<div class="gor"></div>
@@ -17,11 +17,14 @@
   			
   		</div>
   	</div>
-  	<contentList></contentList>
+    
+  	<contentList id='contentList'></contentList>
+
   </div>
 </template>
 
 <script>
+import AlloyTouch from 'alloytouch'
 import { Indicator } from 'mint-ui';
 import backScroll from '../components/backScroll'
 import axios from 'axios'
@@ -38,10 +41,11 @@ export default {
   },
   mounted:function(){
     this.getThemeList()
+    //loading
     Indicator.open({
       text: '加载中...',
       spinnerType: 'snake'
-    });
+    })
   },
   components:{
     contentList,backScroll
@@ -90,7 +94,11 @@ export default {
       console.log(error)
     });
   },
+  //下拉图片变大
+  downPull(){
+    // console.log("dowm")
 
+  }
 }
 
 }

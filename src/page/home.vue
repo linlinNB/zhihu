@@ -4,7 +4,7 @@
     <!--     遮罩层 -->
     <div class="pop" v-if='homePop' @click="homePopFalse()"></div> 
       <div class="header" :class="{on:menu_off}" id='head'>
-          <h1>今日热闻</h1>
+         <h1>今日热闻</h1>
       <span class="menu-i" @click="menu_fade(),homePopTrue()" >
       </span>
       </div>
@@ -16,7 +16,10 @@
          </router-link> 
         </mt-swipe-item>
       </mt-swipe>
+      
+
       <contentList></contentList>
+      
     </div>
 </template>
 
