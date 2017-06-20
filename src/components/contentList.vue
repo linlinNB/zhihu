@@ -1,8 +1,6 @@
 <template>
-
+<animated-fade-in>
   <div class="contentList" v-infinite-scroll="loadMore"infinite-scroll-disabled="loading"infinite-scroll-distance="10">
-
-
   <router-link to="/homeInside" v-for="item in NewList" :key="item.id" >
   	<div class="list bBor" @click="goNewdetails(item.id)">
   		<div class="txt">
@@ -15,10 +13,11 @@
   	</div>
   </router-link>
   </div>
+  </animated-fade-in>
 </template>
 
 <script>
-
+import AnimatedVue from 'animated-vue'
 import axios from 'axios'
 import api from './../api/index'
 import { mapState } from 'vuex';

@@ -6,9 +6,11 @@
     <div class="menu" :class="{on:menu_off}">
       <div class="user">
         <div class="tit">
+        <animated-jello>
           <div class="pic-user">
             <img src="../assets/img/face.jpg" width="100%">
           </div>
+          </animated-jello>
           <div class="user-name">亲爱的不二</div>
         </div>
         <div class="set">

@@ -1,9 +1,10 @@
 <template>
     <div class="index-wrap" :class="{on:menu_off}">
-    <backScroll></backScroll>
+  <!--     backTop -->
+    <div class="glyphicon glyphicon-triangle-top" href="javascript:;" id="hoTop"></div>
     <!--     遮罩层 -->
     <div class="pop" v-if='homePop' @click="homePopFalse()"></div> 
-      <div class="header" :class="{on:menu_off}" id='head'>
+      <div class="header" :class="{on:menu_off}" id='homeTitle'>
           <h1>今日热闻</h1>
       <span class="menu-i" @click="menu_fade(),homePopTrue()" >
       </span>
@@ -22,7 +23,6 @@
 
 <script>
 import { Indicator } from 'mint-ui';
-import backScroll from '../components/backScroll'
 import axios from 'axios'
 import api from './../api/index'
 import contentList from '../components/contentList'
@@ -37,7 +37,7 @@ export default {
   ]),
   name: 'index',
   components: {
-    contentList,backScroll
+    contentList
   },
   data () {
     return {
@@ -53,7 +53,8 @@ export default {
     Indicator.open({
       text: '加载中...',
       spinnerType: 'fading-circle'
-    })
+    }),
+    this.changeTitleColor()
   },
   methods:{
     //菜单点击false
@@ -87,6 +88,44 @@ export default {
     goNewdetails(newsId){
       this.$store.dispatch('goNewdetails',{newsId:newsId})
       // console.log(newsId)
+    },
+    //标题颜色下拉变色
+    changeTitleColor(){
+        var hoTop = document.getElementById('hoTop');
+        var homeTitle = document.getElementById('homeTitle');
+        var height = document.documentElement.clientHeight;//获取可视区域高度
+        var timer = null;
+        window.onscroll = function(){ 
+          var a = true;
+          var osTop = document.documentElement.scrollTop || document.body.scrollTop;//获取滚动条的位置，返回数值,,谷歌支持后面的
+          if (osTop>=height){ 
+            hoTop.style.display="block";
+          }else{ 
+            hoTop.style.display="none";
+          }
+          if (!a){ 
+            clearInterval(timer);
+          }
+
+          if(osTop>=200){
+           homeTitle.style.background = '#0588e9';
+          }else{
+           homeTitle.style.background = 'none';
+          }
+        }
+        hoTop.onclick = function(){ 
+        //设置定时器
+        timer = setInterval(function(){ 
+        var osTop = document.documentElement.scrollTop || document.body.scrollTop;//获取滚动条的位置，返回数值,,谷歌支持后面的
+        var speed = Math.floor(-osTop /6);
+
+        document.documentElement.scrollTop = document.body.scrollTop = osTop + speed;
+        
+          if(osTop ==0){ 
+            clearInterval(timer);
+          }
+        },30)//动画，定时器 
+      }
     }
   }
 }
@@ -105,4 +144,6 @@ export default {
 .header.on{position: absolute;left: 0;top: 0}
 .mint-swipe h2{color: #fff;font-size: 16px;position: absolute;padding: 0 15px;left: 0;bottom: 15px;height: 38px;box-sizing: border-box;z-index: 2}
 /*.pop{width: 100%;height: 100%;position: absolute;left: 0;top: 0;background: rgba(0,0,0,.3);z-index: 1}*/
+#hoTop{width: 50px;height: 50px;position: fixed;bottom: 30px; display: none;color: red;right: 15px;z-index: 1;background: #000;background: url(../assets/img/scrollTop.png) center no-repeat;background-size: 100%;}
 </style>
+
