@@ -1,4 +1,5 @@
 <template>
+
   <div class="inside" :class="{on:menu_off}">
   <backScroll></backScroll>
     <!--     遮罩层 -->
@@ -8,6 +9,7 @@
   			<h2>{{this.tit}}</h2>
   		<div class="gor"></div>
   	</div>
+    <mt-loadmore :top-method="loadTop"  ref="loadmore">
   	<div class="author bBor">
   		<span>主编</span>
   		<div class="content">
@@ -19,19 +21,23 @@
   	</div>
     
   	<contentList id='contentList'></contentList>
-
+  </mt-loadmore>
   </div>
+  
 </template>
 
 <script>
-import AlloyTouch from 'alloytouch'
-import { Indicator } from 'mint-ui';
+import { Loadmore } from 'mint-ui';
+import { Indicator} from 'mint-ui';
 import backScroll from '../components/backScroll'
 import axios from 'axios'
 import api from './../api/index'
 import { mapState , mapActions} from 'vuex';
 import contentList from '../components/contentList'
+
+
 export default {
+
   data () {
     return {
       msg: '',
@@ -46,6 +52,9 @@ export default {
       text: '加载中...',
       spinnerType: 'snake'
     })
+
+    
+
   },
   components:{
     contentList,backScroll
@@ -95,9 +104,9 @@ export default {
     });
   },
   //下拉图片变大
-  downPull(){
-    // console.log("dowm")
-
+  loadTop(id) {
+    console.log(this.$refs)
+    this.$refs.loadmore.onTopLoaded(id);
   }
 }
 

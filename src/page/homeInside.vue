@@ -1,6 +1,9 @@
 <template>
   <div class="home-details">
-  <div class="goback" @click="goBack"></div>
+  <mt-header fixed title="">
+    <mt-button @click="goBack" icon="back" slot="left">返回</mt-button>
+  </mt-header>
+  <!-- <div class="goback" @click="goBack"></div> -->
   	<div class="banner" v-if="data.image">
   		<div class="pic">
   		    <img :src="data.image" width="100%">
@@ -13,10 +16,13 @@
 </template>
 
 <script>
-import { Indicator } from 'mint-ui';
+
+import { Indicator ,Header } from 'mint-ui';
 import axios from 'axios'
 import api from './../api/index'
 import { mapState } from 'vuex';
+
+
 export default {
   data () {
     return {
@@ -64,7 +70,7 @@ export default {
 
 .headline{display: none;}
 .headline .img-place-holder{display: none;height: 0}
-.home-details{background: #f6f6f6;}
+.home-details{background: #f6f6f6;padding-top: 40px;}
 .banner{position: relative;height: 220px;overflow: hidden;margin-bottom: 4px;}
 .banner .pic{font-size: 0;width: 100%;position: relative;height: 100%;}
 .banner .pic img{    filter: brightness(90%);position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);}
