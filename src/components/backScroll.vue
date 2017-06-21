@@ -50,7 +50,7 @@ export default {
 	}
 }
 </script>
-<style scoped>
+<style>
 	
 	#btn{width: 50px;height: 50px;position: fixed;bottom: 30px; display: none;color: red;right: 15px;z-index: 1;background: #000;background: url(../assets/img/scrollTop.png) center no-repeat;background-size: 100%;}
 
