@@ -30,6 +30,7 @@ const routes = [
 
 let router = new VueRouter({
 	mode:"history",
+	saveScrollPosition:true,  //在启用html5 history模式的时候生效，用于后退操作的时候记住之前的滚动条位置
 	routes
 })
 /* eslint-disable no-new */

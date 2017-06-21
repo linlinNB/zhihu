@@ -1,6 +1,6 @@
 <template>
-
-  <div class="inside" :class="{on:menu_off}">
+<mt-loadmore :top-method="loadTop"  ref="loadmore">
+  <div class="inside" :class="{on:menu_off}" id='inside'>
   <backScroll></backScroll>
     <!--     遮罩层 -->
     <div class="pop" v-if='homePop' @click="homePopFalse()"></div>
@@ -9,7 +9,7 @@
   			<h2>{{this.tit}}</h2>
   		<div class="gor"></div>
   	</div>
-    <mt-loadmore :top-method="loadTop"  ref="loadmore">
+    
   	<div class="author bBor">
   		<span>主编</span>
   		<div class="content">
@@ -21,9 +21,9 @@
   	</div>
     
   	<contentList id='contentList'></contentList>
-  </mt-loadmore>
+ 
   </div>
-  
+   </mt-loadmore>
 </template>
 
 <script>
@@ -104,10 +104,10 @@ export default {
     });
   },
   //下拉图片变大
-  loadTop(id) {
-    console.log(this.$refs)
-    this.$refs.loadmore.onTopLoaded(id);
-  }
+      loadTop(){
+          this.$refs.loadmore.onTopLoaded();
+          // console.log(id);
+      },
 }
 
 }
