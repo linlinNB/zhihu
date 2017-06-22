@@ -10,7 +10,6 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "animated-vue": "^0.4.0",
     "axios": "^0.16.1",
     "v-bar": "^2.0.0",
     "vue": "^2.3.3",

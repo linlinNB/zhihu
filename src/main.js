@@ -6,12 +6,12 @@ import 'mint-ui/lib/style.css'
 import App from './App.vue'
 import store from './vuex'
 import router from './router/router.js'
-import AnimatedVue from 'animated-vue'
-// import VueAxios from 'vue-axios'
+import { Lazyload } from 'mint-ui';
 
-// Vue.use(VueAxios, axios)
 
-Vue.use(AnimatedVue)
+var VueTouch = require('vue-touch')
+Vue.use(VueTouch, {name: 'v-touch'})
+Vue.use(Lazyload);
 Vue.use(Mint);
 Vue.config.productionTip = false
 /* eslint-disable no-new */

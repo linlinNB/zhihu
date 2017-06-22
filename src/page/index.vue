@@ -50,7 +50,6 @@ import api from './../api/index'
 import { mapState } from 'vuex';
 export default {
   created:function(){
-
   },
   computed: mapState ([
     //计算属性

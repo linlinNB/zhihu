@@ -1,6 +1,6 @@
 <template>
 
-  <div class="contentList" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="10">
+  <div class="contentList" v-infinite-scroll="loadMore" infinite-scroll-disabled="loading" infinite-scroll-distance="0">
   <router-link to="/homeInside" v-for="item in NewList" :key="item.id" >
   	<div class="list bBor" @click="goNewdetails(item.id)">
   		<div class="txt">

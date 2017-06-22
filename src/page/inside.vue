@@ -1,5 +1,5 @@
 <template>
-
+<v-touch v-on:swipeleft="onSwipeLeft">
   <div class="inside" :class="{on:menu_off}" id='inside'>
   <backScroll></backScroll>
     <!--     遮罩层 -->
@@ -8,6 +8,9 @@
   		<div class="goback" @click="menu_fade(),homePopTrue()"></div>
   			<h2>{{this.tit}}</h2>
   		<div class="gor"></div>
+      <div class="topImg">
+        <img :src="this.Topimg" width="100%">
+      </div>
   	</div>
     <mt-loadmore :top-method="loadTop"  ref="loadmore" :maxDistance='100'>
   	<div class="author bBor" id='author'>
@@ -23,11 +26,11 @@
   	<contentList id='contentList'></contentList>
     </mt-loadmore>
   </div>
-   
+   </v-touch>
 </template>
 
 <script>
-import { Loadmore } from 'mint-ui';
+
 import { Indicator} from 'mint-ui';
 import backScroll from '../components/backScroll'
 import axios from 'axios'
@@ -43,7 +46,8 @@ export default {
       msg: '',
       titNum:0,
       tit:'',
-      maxDistance:80
+      maxDistance:80,
+      Topimg:''
     }
   },
   mounted:function(){
@@ -53,7 +57,6 @@ export default {
       text: '加载中...',
       spinnerType: 'snake'
     })
-
   },
   components:{
     contentList,backScroll
@@ -94,6 +97,8 @@ export default {
       this.themeList.forEach(e=>{
         if( e.id==this.newListId.themId){
           this.tit = e.name
+          this.Topimg = e.thumbnail
+          console.log(this.Topimg)
         }
       })
       //this.themeList
@@ -109,7 +114,9 @@ export default {
           this.$refs.loadmore.onTopLoaded();
         },2000)
     },
-
+    onSwipeLeft(){
+      console.log('left了')
+    }
 }
 
 }
@@ -117,12 +124,13 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.topImg{position: absolute;left: 0;top: 0;width: 100%;z-index: -1;}
 .pop{position: absolute;left: 0;top: 0;width: 100%;height: 100%;z-index: 10}
 .inside{transition: all 0.5s;position: relative;left: 0;}
 .inside.on{left: 188px;}
 .content img{margin: 0;}
 .content{margin: 0;}
-.inhead{height: 45px;display: flex;justify-content: space-between;align-items: center;background: url(../assets/img/p1.jpg) center no-repeat;background-size: 100%;}
+.inhead{height: 45px;display: flex;justify-content: space-between;align-items: center;}
 .inhead .goback{width: 45px;height: 45px;background: url(../assets/img/i-left.png) center no-repeat;background-size: 32px;}
 .inhead h2{font-size: 20px;color: #fff;font-weight: normal;letter-spacing: 1px;}
 .inhead .gor{width: 45px;height: 45px;background: url(../assets/img/i-gor.png) center no-repeat;background-size: 24px;}
