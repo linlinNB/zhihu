@@ -1,7 +1,7 @@
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
-import MintUI from 'mint-ui'
+import Mint from 'mint-ui';
 import 'mint-ui/lib/style.css'
 import App from './App.vue'
 import store from './vuex'
@@ -12,7 +12,7 @@ import AnimatedVue from 'animated-vue'
 // Vue.use(VueAxios, axios)
 
 Vue.use(AnimatedVue)
-Vue.use(MintUI)
+Vue.use(Mint);
 Vue.config.productionTip = false
 /* eslint-disable no-new */
 new Vue({

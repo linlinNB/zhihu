@@ -1,16 +1,16 @@
 <template>
-<mt-loadmore :top-method="loadTop"  ref="loadmore">
+
   <div class="inside" :class="{on:menu_off}" id='inside'>
   <backScroll></backScroll>
     <!--     遮罩层 -->
     <div class="pop" v-if='homePop' @click="homePopFalse()"></div>
-  	<div class="inhead bBor" id="inhead">
+  	<div class="inhead bBor loading-background" id="inhead">
   		<div class="goback" @click="menu_fade(),homePopTrue()"></div>
   			<h2>{{this.tit}}</h2>
   		<div class="gor"></div>
   	</div>
-    
-  	<div class="author bBor">
+    <mt-loadmore :top-method="loadTop"  ref="loadmore" :maxDistance='100'>
+  	<div class="author bBor" id='author'>
   		<span>主编</span>
   		<div class="content">
   			<img src="../assets/img/face-pbulic.png" width="100%">
@@ -21,9 +21,9 @@
   	</div>
     
   	<contentList id='contentList'></contentList>
- 
+    </mt-loadmore>
   </div>
-   </mt-loadmore>
+   
 </template>
 
 <script>
@@ -42,7 +42,8 @@ export default {
     return {
       msg: '',
       titNum:0,
-      tit:''
+      tit:'',
+      maxDistance:80
     }
   },
   mounted:function(){
@@ -52,8 +53,6 @@ export default {
       text: '加载中...',
       spinnerType: 'snake'
     })
-
-    
 
   },
   components:{
@@ -104,10 +103,13 @@ export default {
     });
   },
   //下拉图片变大
-      loadTop(){
+    loadTop(){
+      console.log()
+        setTimeout(()=>{
           this.$refs.loadmore.onTopLoaded();
-          // console.log(id);
-      },
+        },2000)
+    },
+
 }
 
 }

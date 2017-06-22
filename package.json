@@ -12,7 +12,6 @@
   "dependencies": {
     "animated-vue": "^0.4.0",
     "axios": "^0.16.1",
-    "mint-ui": "^2.2.7",
     "v-bar": "^2.0.0",
     "vue": "^2.3.3",
     "vue-animate": "^0.0.4",
