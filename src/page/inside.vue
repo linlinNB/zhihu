@@ -1,5 +1,5 @@
 <template>
-<v-touch v-on:swipeleft="onSwipeLeft">
+<v-touch v-on:swipedown="onSwipedown">
   <div class="inside" :class="{on:menu_off}" id='inside'>
   <backScroll></backScroll>
     <!--     遮罩层 -->
@@ -114,8 +114,9 @@ export default {
           this.$refs.loadmore.onTopLoaded();
         },2000)
     },
-    onSwipeLeft(){
-      console.log('left了')
+    onSwipedown(e){
+      console.log(e.deltaX )
+      
     }
 }
 
