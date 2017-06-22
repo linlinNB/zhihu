@@ -14,6 +14,15 @@ Vue.use(VueTouch, {name: 'v-touch'})
 Vue.use(Lazyload);
 Vue.use(Mint);
 Vue.config.productionTip = false
+Vue.config.errorHandler = function (err, vm) {
+    var componentName = Vue.util.formatComponentName(vm),
+        propsData = vm.$options.propsData;
+    fundebug.notifyError(err, {
+        metaData: {
+            componentName: componentName,
+            propsData: propsData
+    }});
+}
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
