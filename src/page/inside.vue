@@ -1,5 +1,6 @@
 <template>
-<v-touch v-on:swipedown="onSwipedown">
+<!-- <v-touch v-on:pandown="onPandown" v-on:panup="onpanUp" ref="tapper"> -->
+
   <div class="inside" :class="{on:menu_off}" id='inside'>
   <backScroll></backScroll>
     <!--     遮罩层 -->
@@ -12,21 +13,22 @@
         <img :src="this.Topimg" width="100%">
       </div>
   	</div>
-    <mt-loadmore :top-method="loadTop"  ref="loadmore" :maxDistance='100'>
+    <mt-loadmore :top-method="loadTop"  ref="loadmore" >
   	<div class="author bBor" id='author'>
   		<span>主编</span>
   		<div class="content">
   			<img src="../assets/img/face-pbulic.png" width="100%">
   		</div>
-  		<div class="goright">
+  		<div class="goright"></div>
   			
-  		</div>
   	</div>
     
   	<contentList id='contentList'></contentList>
     </mt-loadmore>
   </div>
-   </v-touch>
+  </mt-loadmore>
+<!--    </v-touch> -->
+
 </template>
 
 <script>
@@ -47,7 +49,8 @@ export default {
       titNum:0,
       tit:'',
       maxDistance:80,
-      Topimg:''
+      Topimg:'',
+      objPanUp:true,
     }
   },
   mounted:function(){
@@ -82,7 +85,6 @@ export default {
     //菜单点击true
     homePopTrue(){
       this.$store.commit('homePopTrue')
-      console.log(this.homePop)
     },
     //菜单动画
     menu_fade(){
@@ -92,32 +94,36 @@ export default {
     getThemeList() {
     api.getTopics().then(res=>{
       this.themeList = res.data.others;
-      setTimeout(function(){Indicator.close();},1000);
-      const _this = this;
+      setTimeout(function(){Indicator.close();},1000);//一秒后关闭loading
       this.themeList.forEach(e=>{
         if( e.id==this.newListId.themId){
-          this.tit = e.name
-          this.Topimg = e.thumbnail
-          console.log(this.Topimg)
+          this.tit = e.name //获取日报标题
+          this.Topimg = e.thumbnail//获取日报顶部图片
         }
       })
-      //this.themeList
-      // console.log(this.tit)
     }).catch((error) => {
       console.log(error)
     });
   },
   //下拉图片变大
     loadTop(){
-      console.log()
-        setTimeout(()=>{
+        // setTimeout(()=>{
           this.$refs.loadmore.onTopLoaded();
-        },2000)
+        // },2000)
     },
-    onSwipedown(e){
-      console.log(e.deltaX )
+    //下拉
+    onPandown(e){
       
+      // this.objPanUp = true;
+      // const dowmX = e.deltaX 
+      // console.log(dowmX)
+    },
+    //上滑
+    onpanUp(){
+      // this.disablePan()
+      // console.log('up')
     }
+
 }
 
 }

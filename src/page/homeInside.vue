@@ -11,7 +11,7 @@
   		<h2>{{data.title}}</h2>
   	</div>
 
-  	<div v-html="body" :style="{css}"></div>
+  	<div v-html="body"></div>
   </div>
 </template>
 
@@ -28,7 +28,6 @@ export default {
     return {
       msg: '',
       body:[],
-      css:[],
       data:""
     }
   },
@@ -55,17 +54,18 @@ export default {
   	}
   },
   mounted:function(){
-  	this.getNewsId()
-    Indicator.open({
-  text: '加载中...',
-  spinnerType: 'snake'
-});
+      this.getNewsId()
+      Indicator.open({
+      text: '加载中...',
+      spinnerType: 'snake'
+    });
   },
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+/*主题日报样式表*/
   @import '../assets/css/news_qa.auto.css';
 
 .headline{display: none;}

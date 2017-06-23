@@ -6,11 +6,13 @@ import 'mint-ui/lib/style.css'
 import App from './App.vue'
 import store from './vuex'
 import router from './router/router.js'
-import { Lazyload } from 'mint-ui';
+import { Lazyload ,Loadmore , InfiniteScroll} from 'mint-ui';
 
-
+Vue.component(Loadmore.name, Loadmore);
 var VueTouch = require('vue-touch')
 Vue.use(VueTouch, {name: 'v-touch'})
+
+Vue.use(InfiniteScroll);
 Vue.use(Lazyload);
 Vue.use(Mint);
 Vue.config.productionTip = false

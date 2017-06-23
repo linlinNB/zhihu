@@ -1,4 +1,7 @@
 <template>
+
+
+
     <div class="index-wrap" :class="{on:menu_off}">
   <!--     backTop -->
     <div class="glyphicon glyphicon-triangle-top" href="javascript:;" id="hoTop"></div>
@@ -19,6 +22,7 @@
       </mt-swipe>
       <contentList></contentList>
     </div>
+
 </template>
 
 <script>
@@ -57,6 +61,16 @@ export default {
     this.changeTitleColor()
   },
   methods:{
+    loadTop() {
+  // 加载更多数据
+  this.$refs.loadmore.onTopLoaded();
+},
+loadBottom() {
+  // 加载更多数据
+  // this.$refs.loadmore.onBottomLoaded();
+  console.log("到底部了")
+},
+
     //菜单点击false
     homePopFalse(){
       this.$store.commit('homePopFalse')
